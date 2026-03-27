@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog Running in Circle</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to top, #3cb043 40%, #87ceeb 40%);
+      height: 100vh;
+      position: relative;
+    }
+
+    #dog {
+      position: absolute;
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="dog">🐕</div>
+
+<script>
+  const dog = document.getElementById("dog");
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight * 0.65; // keep it on the grass
+
+  const radius = 150;
+  let angle = 0;
+
+  function moveDog() {
+    angle += 0.03;
+
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
+
+    dog.style.left = x + "px";
+    dog.style.top = y + "px";
+
+    // Rotate dog to face direction of movement
+    const rotation = angle * (180 / Math.PI);
+    dog.style.transform = `rotate(${rotation}deg)`;
+
+    requestAnimationFrame(moveDog);
+  }
+
+  moveDog();
+</script>
+
+</body>
+</html>
